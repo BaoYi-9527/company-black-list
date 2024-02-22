@@ -10,18 +10,16 @@ declare(strict_types=1);
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
 
-namespace HyperfTest\Cases;
+namespace App\Controller;
 
-use Hyperf\Testing\TestCase;
+use Hyperf\Swagger\Annotation as HA;
 
-/**
- * @internal
- * @coversNothing
- */
-class ExampleTest extends TestCase
+#[HA\HyperfServer('http')]
+class LoginController
 {
-    public function testExample()
+    #[HA\Post(path: '/login', description: '小程序登录接口')]
+    public function login()
     {
-        $this->get('/')->assertOk()->assertSee('Hyperf');
+        return '小程序登录接口';
     }
 }

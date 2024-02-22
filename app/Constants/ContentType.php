@@ -12,14 +12,9 @@ declare(strict_types=1);
 
 namespace App\Constants;
 
-use Hyperf\Constants\AbstractConstants;
-use Hyperf\Constants\Annotation\Constants;
-
-#[Constants]
-class ErrorCode extends AbstractConstants
+enum ContentType: int
 {
-    /**
-     * @Message("Server Error！")
-     */
-    public const SERVER_ERROR = 500;
+    case TEXT = 0;
+    case IMAGE = 1;
+    case VIDEO = 2;
 }
