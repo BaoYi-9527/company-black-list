@@ -5,6 +5,8 @@
 -- composer require symfony/var-dumper --dev
 -- composer require hyperf/di
 -- composer require hyperf/redis
+-- composer require hyperf/paginator
+
 
 
 CREATE TABLE `user`

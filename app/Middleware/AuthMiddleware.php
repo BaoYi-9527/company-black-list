@@ -29,11 +29,11 @@ class AuthMiddleware implements MiddlewareInterface
             $token = str_replace('Bearer ', '', $auth[0]);
             # session token
             $session = $this->container->get(SessionInterface::class);
-            $user = $session->get($token);
+            $user    = $session->get($token);
             if (!$user) throw new BusinessException(ErrorCode::AUTH_FAIL);
             # 判断 token 时间是否过期
             $lastLoginTime = $user['last_login_time'];
-            $diffSeconds = strtotime(date('Y-m-d H:i:s')) - strtotime($lastLoginTime);
+            $diffSeconds   = strtotime(date('Y-m-d H:i:s')) - strtotime($lastLoginTime);
             if ($diffSeconds > 3600 * 2) {
                 $session->forget($token);
                 throw new BusinessException(ErrorCode::AUTH_FAIL);

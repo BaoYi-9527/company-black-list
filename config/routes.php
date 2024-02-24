@@ -28,6 +28,9 @@ Router::addGroup('/v1/', function () {
         # 注销
         Router::post('logout', 'App\Controller\Web\LoginController@logout');
         # 帖子列表
+        Router::addGroup('post', function () {
+            Router::get('/list', 'App\Controller\Web\PostController@list');
+        });
 
     }, ['middleware' => [AuthMiddleware::class]]);
 

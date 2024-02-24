@@ -49,12 +49,14 @@ class LoginService extends Service
 
         if (md5($password) != $user->password) throw new BusinessException(ErrorCode::AUTH_PASSWORD_ERROR);
 
+        $token = md5($email . time());
+
         $user->token           = md5($email . time());
         $user->ip              = $request->getServerParams()['remote_addr'];
         $user->last_login_time = date('Y-m-d H:i:s');
         $user->login_times     = $user->login_times + 1;
         $user->save();
-        $this->container->get(SessionInterface::class)->set('user', $user);
+        $this->container->get(SessionInterface::class)->set($token, $user);
 
         # TODO::Ranger 登录记录
 
