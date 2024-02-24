@@ -30,7 +30,7 @@ class AppExceptionHandler extends ExceptionHandler
         $this->logger->error($throwable->getTraceAsString());
 
         if ($throwable instanceof BusinessException) {
-            return $response->withStatus(200)->withBody(new SwooleStream(json_encode([
+            return $response->withStatus(200)->withHeader('Content-Type', 'application/json; charset=utf-8')->withBody(new SwooleStream(json_encode([
                 'code'    => $throwable->getCode(),
                 'message' => $throwable->getMessage(),
             ])));

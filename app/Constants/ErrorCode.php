@@ -21,4 +21,14 @@ class ErrorCode extends AbstractConstants
      * @Message("Server Error！")
      */
     public const SERVER_ERROR = 500;
+
+    /**
+     * @message("验证码已发送，请稍后再试!")
+     */
+    public const AUTH_CAPTCHA_SEND = 10001;
+
+    /**
+     * @message("邮件发送失败，请稍后再试!")
+     */
+    public const AUTH_EMAIL_SEND_ERROR = 10002;
 }

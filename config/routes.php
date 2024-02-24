@@ -18,5 +18,9 @@ Router::get('/favicon.ico', function () {
 });
 
 Router::addGroup('/v1/', function () {
+    Router::post('send-captcha', 'App\Controller\Web\LoginController@sendCaptcha');
+    Router::post('register', 'App\Controller\Web\LoginController@register');
     Router::addRoute(['GET', 'POST', 'HEAD'], 'login', 'App\Controller\Web\LoginController@index');
+
+
 });
