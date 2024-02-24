@@ -14,7 +14,7 @@
     "require": {
         "php": ">=8.0",
         "hyperf/cache": "~3.0.0",
-        "hyperf/command": "~3.0.0",
+        "hyperf/command": "^3.0",
         "hyperf/config": "~3.0.0",
         "hyperf/constants": "~3.0.0",
         "hyperf/database": "~3.0.0",
@@ -28,7 +28,9 @@
         "hyperf/process": "~3.0.0",
         "hyperf/redis": "~3.0.0",
         "hyperf/swagger": "^3.0",
-        "hyperf/validation": "^3.0"
+        "hyperf/validation": "^3.0",
+        "limingxinleo/hyperf-utils": "^3.9",
+        "phpmailer/phpmailer": "^6.9"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
@@ -37,7 +39,8 @@
         "hyperf/watcher": "^3.0",
         "mockery/mockery": "^1.0",
         "phpstan/phpstan": "^1.0",
-        "swoole/ide-helper": "^5.0"
+        "swoole/ide-helper": "^5.0",
+        "symfony/var-dumper": "^6.4"
     },
     "suggest": {
         "ext-openssl": "Required to use HTTPS.",

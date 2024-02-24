@@ -1,0 +1,5 @@
+-- 安装一些依赖包
+-- composer require phpmailer/phpmailer
+-- composer require limingxinleo/hyperf-utils
+-- composer require hyperf/command
+-- composer require symfony/var-dumper --dev
