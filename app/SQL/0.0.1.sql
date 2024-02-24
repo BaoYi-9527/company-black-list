@@ -32,3 +32,4 @@ CREATE TABLE `content` (
 -- composer require phpmailer/phpmailer
 -- composer require w7corp/easywechat:^6.7
 -- composer require limingxinleo/hyperf-utils
+-- composer require hyperf/command
