@@ -10,8 +10,6 @@ use Hyperf\Contract\SessionInterface;
 use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\HttpServer\Contract\ResponseInterface;
 use Hyperf\Swagger\Annotation as OA;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 
 #[OA\HyperfServer('http')]
 class LoginController extends AbstractController

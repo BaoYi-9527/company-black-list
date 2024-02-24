@@ -26,3 +26,52 @@ CREATE TABLE `user`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE `company`
+(
+    `id`         int          NOT NULL AUTO_INCREMENT,
+    `name`       varchar(255) NOT NULL,
+    `station`    varchar(255) NOT NULL,
+    `city`       varchar(50) DEFAULT NULL,
+    `ip`         varchar(50)  NOT NULL,
+    `show`       tinyint      NOT NULL,
+    `created_at` datetime     NOT NULL,
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1854
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
+
+CREATE TABLE `comment`
+(
+    `id`         int                                                   NOT NULL,
+    `user_id`    int      DEFAULT NULL,
+    `compant_id` int      DEFAULT NULL,
+    `post_id`    int      DEFAULT NULL,
+    `parent_id`  int      DEFAULT '0',
+    `comment`    text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    `ip`         varchar(50)                                           NOT NULL,
+    `show`       tinyint                                               NOT NULL,
+    `created_at` datetime                                              NOT NULL,
+    `updated_at` datetime DEFAULT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
+
+CREATE TABLE `post`
+(
+    `id`         int                                                          NOT NULL AUTO_INCREMENT,
+    `user_id`    int      DEFAULT NULL COMMENT '用户ID',
+    `station_id` tinyint  DEFAULT '0' COMMENT '岗位ID',
+    `type`       tinyint  DEFAULT '1' COMMENT '评论类型 1-黑评 2-好评',
+    `company_id` int      DEFAULT NULL COMMENT '公司ID',
+    `content`    text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci        NOT NULL COMMENT '帖子内容',
+    `ip`         varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '评论IP地址',
+    `show`       tinyint                                                      NOT NULL COMMENT '是否展示 0-否 1-是',
+    `created_at` datetime                                                     NOT NULL,
+    `updated_at` datetime DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 825
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
