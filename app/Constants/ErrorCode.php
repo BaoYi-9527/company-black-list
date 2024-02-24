@@ -31,4 +31,13 @@ class ErrorCode extends AbstractConstants
      * @message("邮件发送失败，请稍后再试!")
      */
     public const AUTH_EMAIL_SEND_ERROR = 10002;
+
+    /**
+     * @message("验证码错误，请重新输入!")
+     */
+    public const AUTH_CAPTCHA_ERROR = 10003;
+    /**
+     * @message("该邮箱已被注册")
+     */
+    public const AUTH_EMAIL_REGISTERED = 10004;
 }

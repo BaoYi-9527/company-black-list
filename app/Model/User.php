@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use Carbon\Carbon;
 use Hyperf\DbConnection\Model\Model;
 
 /**
@@ -11,7 +12,7 @@ use Hyperf\DbConnection\Model\Model;
  * @property string $name 
  * @property string $email 
  * @property string $password 
- * @property int $status 
+ * @property int $status 0:禁用,1:正常
  * @property string $head_img 
  * @property string $desc 
  * @property string $ip 
@@ -32,10 +33,12 @@ class User extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected array $fillable = [];
+    protected array $guarded = [];
 
     /**
      * The attributes that should be cast to native types.
      */
-    protected array $casts = ['id' => 'integer', 'status' => 'integer', 'login_times' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected array $casts = ['id' => 'int', 'status' => 'integer', 'login_times' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+
+
 }
