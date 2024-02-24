@@ -13,8 +13,7 @@ CREATE TABLE `secret` (
     `secret` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
     `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `UNIQUE_OPENID` (`openid`) USING BTREE
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='密码表';
 
 CREATE TABLE `content` (
@@ -28,3 +27,8 @@ CREATE TABLE `content` (
     PRIMARY KEY (`id`),
     INDEX `INDEX_SECRET_ID` (`secret_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='内容表';
+
+-- 安装一些依赖包
+-- composer require phpmailer/phpmailer
+-- composer require w7corp/easywechat:^6.7
+-- composer require limingxinleo/hyperf-utils
