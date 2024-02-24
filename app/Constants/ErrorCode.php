@@ -48,4 +48,8 @@ class ErrorCode extends AbstractConstants
      * @message("密码错误")
      */
     public const AUTH_PASSWORD_ERROR = 10006;
+    /**
+     * @message("token 非法")
+     */
+    public const AUTH_FAIL = 10007;
 }
