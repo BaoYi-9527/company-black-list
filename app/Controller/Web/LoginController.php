@@ -16,9 +16,53 @@ use Psr\Container\NotFoundExceptionInterface;
 class LoginController extends AbstractController
 {
 
-    public function index(RequestInterface $request, ResponseInterface $response)
+    #[OA\Post(path: '/login', description: '发送验证码', tags: ['v1/'])]
+    #[OA\RequestBody(
+        description: '请求参数',
+        content: [
+            new OA\MediaType(
+                mediaType: 'application/x-www-form-urlencoded',
+                schema: new OA\Schema(
+                    required: ['email', 'password'],
+                    properties: [
+                        new OA\Property(property: 'email', description: '邮箱', type: 'string'),
+                        new OA\Property(property: 'password', description: '密码', type: 'string'),
+                    ]
+                )
+            )
+        ]
+    )]
+    #[OA\Response(response: 200, description: '响应参数', content: new OA\MediaType(
+        mediaType: 'application/json',
+        schema: new OA\Schema(
+            properties: [
+                new OA\Property(property: 'code', description: '状态码', type: 'integer'),
+                new OA\Property(property: 'message', description: '消息', type: 'string'),
+                new OA\Property(property: 'data', description: '数据', properties: [
+                    new OA\Property(property: 'name', description: '用户名', type: 'string'),
+                    new OA\Property(property: 'email', description: '邮箱', type: 'string'),
+                    new OA\Property(property: 'token', description: 'token', type: 'string'),
+                ], type: 'object'),
+            ]
+        )))]
+    public function login(RequestInterface $request, ResponseInterface $response)
     {
-        return $response->raw('Hello Hyperf!');
+        $params   = $request->all();
+        $email    = $params['email'];
+        $password = $params['password'];
+
+        $loginService = $this->container->get(LoginService::class);
+        $user         = $loginService->login($email, $password, $request);
+
+        return $response->json([
+            'code'    => 0,
+            'message' => 'success',
+            'data'    => [
+                'name'  => $user->name,
+                'email' => $user->email,
+                'token' => $user->token,
+            ],
+        ]);
     }
 
     #[OA\Post(path: '/send-captcha', description: '发送验证码', tags: ['v1/'])]

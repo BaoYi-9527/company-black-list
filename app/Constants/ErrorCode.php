@@ -40,4 +40,12 @@ class ErrorCode extends AbstractConstants
      * @message("该邮箱已被注册")
      */
     public const AUTH_EMAIL_REGISTERED = 10004;
+    /**
+     * @message("该邮箱未注册")
+     */
+    public const AUTH_EMAIL_NOT_FOUND = 10005;
+    /**
+     * @message("密码错误")
+     */
+    public const AUTH_PASSWORD_ERROR = 10006;
 }

@@ -42,6 +42,25 @@ class LoginService extends Service
         return $captcha;
     }
 
+    public function login($email, $password, $request)
+    {
+        $user = User::query()->where('email', $email)->first();
+        if (!$user) throw new BusinessException(ErrorCode::AUTH_EMAIL_NOT_FOUND);
+
+        if (md5($password) != $user->password) throw new BusinessException(ErrorCode::AUTH_PASSWORD_ERROR);
+
+        $user->token           = md5($email . time());
+        $user->ip              = $request->getServerParams()['remote_addr'];
+        $user->last_login_time = date('Y-m-d H:i:s');
+        $user->login_times     = $user->login_times + 1;
+        $user->save();
+        $this->container->get(SessionInterface::class)->set('user', $user);
+
+        # TODO::Ranger 登录记录
+
+        return $user;
+    }
+
     public function register($email, $password, $captcha, $request)
     {
         $redis   = $this->container->get(Redis::class);
@@ -74,7 +93,7 @@ class LoginService extends Service
 
         # session token
         $session = $this->container->get(SessionInterface::class);
-        $session->set($token, $user->toArray());
+        $session->set($token, $user);
 
         return $user;
     }
