@@ -39,6 +39,7 @@ Router::addGroup('/v1/', function () {
         # 评论列表
         Router::addGroup('comment/', function () {
             Router::get('list', 'App\Controller\Web\CommentController@list');
+            Router::post('add', 'App\Controller\Web\CommentController@add');
         });
 
     }, ['middleware' => [AuthMiddleware::class]]);
