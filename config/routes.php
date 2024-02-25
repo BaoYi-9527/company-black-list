@@ -28,8 +28,12 @@ Router::addGroup('/v1/', function () {
         # 注销
         Router::post('logout', 'App\Controller\Web\LoginController@logout');
         # 帖子列表
-        Router::addGroup('post', function () {
-            Router::get('/list', 'App\Controller\Web\PostController@list');
+        Router::addGroup('post/', function () {
+            Router::get('list', 'App\Controller\Web\PostController@list');
+        });
+        # 评论列表
+        Router::addGroup('comment/', function () {
+            Router::get('list', 'App\Controller\Web\CommentController@list');
         });
 
     }, ['middleware' => [AuthMiddleware::class]]);

@@ -46,17 +46,19 @@ CREATE TABLE `company`
 
 CREATE TABLE `comment`
 (
-    `id`         int                                                   NOT NULL,
+    `id`         int                                                   NOT NULL AUTO_INCREMENT,
     `user_id`    int      DEFAULT NULL,
-    `compant_id` int      DEFAULT NULL,
+    `company_id` int      DEFAULT NULL,
     `post_id`    int      DEFAULT NULL,
     `parent_id`  int      DEFAULT '0',
     `comment`    text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
     `ip`         varchar(50)                                           NOT NULL,
     `show`       tinyint                                               NOT NULL,
     `created_at` datetime                                              NOT NULL,
-    `updated_at` datetime DEFAULT NULL
+    `updated_at` datetime DEFAULT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
+  AUTO_INCREMENT = 300
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci;
 

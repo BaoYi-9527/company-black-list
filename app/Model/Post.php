@@ -34,4 +34,9 @@ class Post extends Model
      * The attributes that should be cast to native types.
      */
     protected array $casts = ['id' => 'int', 'user_id' => 'integer', 'station_id' => 'integer', 'type' => 'integer', 'company_id' => 'integer', 'show' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
 }

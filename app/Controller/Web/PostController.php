@@ -15,10 +15,10 @@ class PostController
     public function list(RequestInterface $request, ResponseInterface $response)
     {
         $page     = $request->input('page', 1);
-        $pageSize = $request->input('pageSize', 10);
+        $pageSize = $request->input('page_size', 10);
 
 
-        $list = Post::query()->forPage($page)->paginate($pageSize);
+        $list = Post::with(['company'])->orderByDesc('created_at')->forPage($page)->paginate($pageSize);
 
         return $response->json([
             'code'    => 0,
