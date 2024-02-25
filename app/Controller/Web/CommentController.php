@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controller\Web;
 
+use App\Controller\AbstractController;
 use App\Model\Comment;
 use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\HttpServer\Contract\ResponseInterface;
 use Hyperf\Swagger\Annotation as OA;
 
 #[OA\HyperfServer('http')]
-class CommentController
+class CommentController extends AbstractController
 {
     public function list(RequestInterface $request, ResponseInterface $response)
     {

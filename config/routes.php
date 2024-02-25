@@ -27,9 +27,14 @@ Router::addGroup('/v1/', function () {
     Router::addGroup('', function () {
         # 注销
         Router::post('logout', 'App\Controller\Web\LoginController@logout');
+        # 公司
+        Router::addGroup('company/', function () {
+            Router::get('list', 'App\Controller\Web\CompanyController@list');
+        });
         # 帖子列表
         Router::addGroup('post/', function () {
             Router::get('list', 'App\Controller\Web\PostController@list');
+            Router::post('add', 'App\Controller\Web\PostController@add');
         });
         # 评论列表
         Router::addGroup('comment/', function () {

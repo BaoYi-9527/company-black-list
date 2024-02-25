@@ -28,7 +28,7 @@ class Comment extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected array $fillable = [];
+    protected array $guarded = [];
 
     /**
      * The attributes that should be cast to native types.

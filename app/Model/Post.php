@@ -28,7 +28,7 @@ class Post extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected array $fillable = [];
+    protected array $guarded = [];
 
     /**
      * The attributes that should be cast to native types.
@@ -38,5 +38,10 @@ class Post extends Model
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+    public function station()
+    {
+        return $this->belongsTo(Station::class, 'station_id', 'id');
     }
 }

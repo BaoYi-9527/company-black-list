@@ -8,7 +8,6 @@
 -- composer require hyperf/paginator
 
 
-
 CREATE TABLE `user`
 (
     `id`              int(11)      NOT NULL AUTO_INCREMENT,
@@ -34,10 +33,11 @@ CREATE TABLE `company`
     `id`         int          NOT NULL AUTO_INCREMENT,
     `name`       varchar(255) NOT NULL,
     `station`    varchar(255) NOT NULL,
-    `city`       varchar(50) DEFAULT NULL,
+    `city`       varchar(50)           DEFAULT NULL,
     `ip`         varchar(50)  NOT NULL,
     `show`       tinyint      NOT NULL,
-    `created_at` datetime     NOT NULL,
+    `created_at` datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1854
@@ -46,16 +46,16 @@ CREATE TABLE `company`
 
 CREATE TABLE `comment`
 (
-    `id`         int                                                   NOT NULL AUTO_INCREMENT,
-    `user_id`    int      DEFAULT NULL,
-    `company_id` int      DEFAULT NULL,
-    `post_id`    int      DEFAULT NULL,
-    `parent_id`  int      DEFAULT '0',
-    `comment`    text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    `ip`         varchar(50)                                           NOT NULL,
-    `show`       tinyint                                               NOT NULL,
-    `created_at` datetime                                              NOT NULL,
-    `updated_at` datetime DEFAULT NULL,
+    `id`         int         NOT NULL AUTO_INCREMENT,
+    `user_id`    int                  DEFAULT NULL,
+    `company_id` int                  DEFAULT NULL,
+    `post_id`    int                  DEFAULT NULL,
+    `parent_id`  int                  DEFAULT '0',
+    `comment`    text        NOT NULL,
+    `ip`         varchar(50) NOT NULL,
+    `show`       tinyint     NOT NULL,
+    `created_at` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 300
@@ -64,18 +64,29 @@ CREATE TABLE `comment`
 
 CREATE TABLE `post`
 (
-    `id`         int                                                          NOT NULL AUTO_INCREMENT,
-    `user_id`    int      DEFAULT NULL COMMENT '用户ID',
-    `station_id` tinyint  DEFAULT '0' COMMENT '岗位ID',
-    `type`       tinyint  DEFAULT '1' COMMENT '评论类型 1-黑评 2-好评',
-    `company_id` int      DEFAULT NULL COMMENT '公司ID',
-    `content`    text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci        NOT NULL COMMENT '帖子内容',
-    `ip`         varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '评论IP地址',
-    `show`       tinyint                                                      NOT NULL COMMENT '是否展示 0-否 1-是',
-    `created_at` datetime                                                     NOT NULL,
-    `updated_at` datetime DEFAULT NULL,
+    `id`         int         NOT NULL AUTO_INCREMENT,
+    `user_id`    int                  DEFAULT NULL COMMENT '用户ID',
+    `station_id` tinyint              DEFAULT '0' COMMENT '岗位ID',
+    `type`       tinyint              DEFAULT '1' COMMENT '评论类型 1-黑评 2-好评',
+    `company_id` int                  DEFAULT NULL COMMENT '公司ID',
+    `content`    text        NOT NULL COMMENT '帖子内容',
+    `ip`         varchar(50) NOT NULL COMMENT '评论IP地址',
+    `show`       tinyint     NOT NULL COMMENT '是否展示 0-否 1-是',
+    `created_at` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 825
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
+
+CREATE TABLE `station`
+(
+    `id`         int(11)  NOT NULL AUTO_INCREMENT,
+    `name`       varchar(255)      DEFAULT NULL,
+    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci;
