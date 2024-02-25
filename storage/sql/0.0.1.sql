@@ -35,7 +35,7 @@ CREATE TABLE `company`
     `station`    varchar(255) NOT NULL,
     `city`       varchar(50)           DEFAULT NULL,
     `ip`         varchar(50)  NOT NULL,
-    `show`       tinyint      NOT NULL,
+    `show`       tinyint      NOT NULL DEFAULT  1,
     `created_at` datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`) USING BTREE
@@ -53,7 +53,7 @@ CREATE TABLE `comment`
     `parent_id`  int                  DEFAULT '0',
     `comment`    text        NOT NULL,
     `ip`         varchar(50) NOT NULL,
-    `show`       tinyint     NOT NULL,
+    `show`       tinyint     NOT NULL DEFAULT 1,
     `created_at` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
@@ -71,7 +71,7 @@ CREATE TABLE `post`
     `company_id` int                  DEFAULT NULL COMMENT '公司ID',
     `content`    text        NOT NULL COMMENT '帖子内容',
     `ip`         varchar(50) NOT NULL COMMENT '评论IP地址',
-    `show`       tinyint     NOT NULL COMMENT '是否展示 0-否 1-是',
+    `show`       tinyint     NOT NULL DEFAULT 1 COMMENT '是否展示 0-否 1-是',
     `created_at` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)

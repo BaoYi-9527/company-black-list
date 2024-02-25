@@ -18,11 +18,22 @@ class PostController extends AbstractController
 {
     public function list(RequestInterface $request, ResponseInterface $response)
     {
-        $page     = $request->input('page', 1);
-        $pageSize = $request->input('page_size', 10);
+        $page      = $request->input('page', 1);
+        $pageSize  = $request->input('page_size', 10);
+        $companyId = $request->input('company_id', 0);
+        $stationId = $request->input('station_id', 0);
 
 
-        $list = Post::with(['company'])->orderByDesc('created_at')->forPage($page)->paginate($pageSize);
+        $list = Post::with(['company:id,name,station,city', 'station:id,name'])
+            ->when($companyId, function ($query) use ($companyId) {
+                $query->where('company_id', $companyId);
+            })
+            ->when($stationId, function ($query) use ($stationId) {
+                $query->where('station_id', $stationId);
+            })
+            ->where('show', 1)
+            ->orderByDesc('created_at')
+            ->forPage($page)->paginate($pageSize);
 
         return $response->json([
             'code'    => 0,
