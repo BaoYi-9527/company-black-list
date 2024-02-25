@@ -14,7 +14,7 @@ use Hyperf\Swagger\Annotation as OA;
 #[OA\HyperfServer('http')]
 class LoginController extends AbstractController
 {
-    #[OA\Post(path: '/logout', description: '退出登录', tags: ['v1/'])]
+    #[OA\Post(path: '/logout', summary: '退出登录', tags: ['v1/'])]
     #[OA\HeaderParameter(name: 'authorization', description: 'token', in: 'header', required: true, schema: new OA\Schema(type: 'string'), example: 'Bearer 71e4a1aa3dd12e43164b0e407457f6b4')]
     #[OA\Response(response: 200, description: '响应参数', content: new OA\MediaType(
         mediaType: 'application/json',
@@ -41,7 +41,7 @@ class LoginController extends AbstractController
 
     }
 
-    #[OA\Post(path: '/login', description: '登录', tags: ['v1/'])]
+    #[OA\Post(path: '/login', summary: '登录', tags: ['v1/'])]
     #[OA\RequestBody(
         description: '请求参数',
         content: [
@@ -90,7 +90,7 @@ class LoginController extends AbstractController
         ]);
     }
 
-    #[OA\Post(path: '/send-captcha', description: '发送验证码', tags: ['v1/'])]
+    #[OA\Post(path: '/send-captcha', summary: '发送验证码', tags: ['v1/'])]
     #[OA\RequestBody(
         description: '请求参数',
         content: [
@@ -130,7 +130,7 @@ class LoginController extends AbstractController
         ]);
     }
 
-    #[OA\Post(path: '/register', description: '邮箱注册', tags: ['v1/'])]
+    #[OA\Post(path: '/register', summary: '邮箱注册', tags: ['v1/'])]
     #[OA\RequestBody(
         description: '请求参数',
         content: [
